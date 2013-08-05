@@ -56,6 +56,7 @@ cube, in turn, would generate a new document in the `gorets_events` collection:
 
 ```javascript
 {
+  "_id": ObjectId("..."),
   "t": ISODate("2013-07-12T17:10:00Z"),
   "d": {
     "c": 1
@@ -69,7 +70,7 @@ cube's data keys are based on the default type keys in statsd events:
 - `g` for guages
 - `s` for sets
 
-once you start using cube's evaluator against this collection, cube would generate a `gorets_metrics` colleciton. for example, this evaluator request would sum the received counts at 1 minute intervals (remember: cube's evaluator uses [fixed resolution times](https://github.com/square/cube/wiki/Evaluator)).
+cube automatically manages the `gorets_metrics` colleciton. this evaluator request would sum the received counts at 1 minute intervals (remember: cube's evaluator uses [fixed resolution times](https://github.com/square/cube/wiki/Evaluator)).
 
 ```
 http://localhost:1081/1.0/metric?expression=sum(gorets(c))&step=6e4
@@ -81,6 +82,11 @@ http://localhost:1081/1.0/metric?expression=sum(gorets(c))&step=6e4
 - statsd internal statistics (e.g. `counters.statsd.packets_received`) are not sent to cube.
 - raw timer data is not provided to cube; cube only receives the summary timer statistics (mean, upper count, sum, etc).
 - statsd is designed to collect data in (nearly) real time. as a result, there is currently no good way to pass a timestamp for a previously recorded event to cube from statsd. as a result, all events are timestamped by cube's collector when they are received by cube.
+
+
+## tests
+
+coming soon? use with caution.
 
 
 ## no tcp?
