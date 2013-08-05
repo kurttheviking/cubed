@@ -5,6 +5,8 @@ var cube = require('cube');
 var util = require('util');
 
 function CubeBackend (startupTime, config, emitter){
+    console.log('config', config);
+
     var self = this;
 
     this.lastFlush = startupTime;
