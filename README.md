@@ -23,7 +23,7 @@ Add the `cubed` backend configuration to your statsd configuration file.
 }
 ```
 
-***protip***: although not required, you probably want to set `deleteIdleStats` to `true` in the cubed configuration block. cube's evaluator automatically populates sparse data with `0` values. thus, there is no need to send null stats to the collector.
+***pro tip***: although not required, you probably want to set `deleteIdleStats` to `true` in the cubed configuration block. cube's evaluator automatically populates sparse data with `0` values. thus, there is no need to send null stats to the collector.
 
 defaults:
 - `cubeHost`: `localhost`
@@ -75,7 +75,7 @@ once you start using cube's evaluator against this collection, cube would genera
 http://localhost:1081/1.0/metric?expression=sum(gorets(c))&step=6e4
 ```
 
-***protip***: do not use cube's evaluator at time resolutions smaller than your statsd flush interval (the resulting data will include inaccurate 0 values which do not reflect observed behavior). we have found that it is helpful to include the available time resolutions within internal metrics analysis docs.
+***pro tip***: do not use cube's evaluator at time resolutions smaller than your statsd flush interval (the resulting data will include inaccurate 0 values which do not reflect observed behavior). we have found that it is helpful to include the available time resolutions within internal metrics analysis docs.
 
 **notes**
 - statsd internal statistics (e.g. `count`) are not sent to cube.
