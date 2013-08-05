@@ -46,12 +46,6 @@ CubeBackend.prototype.flush = function (timestamp, metrics) {
                 type: _clean(counterEvent),
                 data: {c: metrics.counters[counterEvent]}
             });
-
-            console.log('SENT');
-            console.log({
-                type: _clean(counterEvent),
-                data: {c: metrics.counters[counterEvent]}
-            });
         }
     }
 
