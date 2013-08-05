@@ -78,7 +78,7 @@ http://localhost:1081/1.0/metric?expression=sum(gorets(c))&step=6e4
 ***pro tip***: do not use cube's evaluator at time resolutions smaller than your statsd flush interval (the resulting data will include inaccurate 0 values which do not reflect observed behavior). we have found that it is helpful to include the available time resolutions within internal metrics analysis docs.
 
 **notes**
-- statsd internal statistics (e.g. `count`) are not sent to cube.
+- statsd internal statistics (e.g. `counters.statsd.packets_received`) are not sent to cube.
 - raw timer data is not provided to cube; cube only receives the summary timer statistics (mean, upper count, sum, etc).
 - statsd is designed to collect data in (nearly) real time. as a result, there is currently no good way to pass a timestamp for a previously recorded event to cube from statsd. as a result, all events are timestamped by cube's collector when they are received by cube.
 
