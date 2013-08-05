@@ -26,9 +26,6 @@ function CubeBackend (startupTime, config, emitter){
 }
 
 CubeBackend.prototype.flush = function (timestamp, metrics) {
-    console.log('[cubed] flushing at ', timestamp);
-    console.log(metrics);
-
     // counters
     for (var counterEvent in metrics.counters) {
         if (counterEvent.substring(0, this.prefixStatsLength) !== this.prefixStats) {
