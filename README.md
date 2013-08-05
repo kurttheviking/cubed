@@ -12,7 +12,7 @@ from your statsd directory
 npm install cubed
 ```
 
-Add the `cubed` backend configuration to your statsd configuration file. (used when starting statsd: e.g. `node stats.js config.js`). 
+Add the `cubed` backend configuration to your statsd configuration file. 
 
 ```javascript
 {
@@ -69,7 +69,7 @@ cube's data keys are based on the default type keys in statsd events:
 - `g` for guages
 - `s` for sets
 
-once you start using cube's evaluator against this collection, cube will also automatically generate a `gorets_metrics` colleciton. for example, this evaluator request would sum the received counts at 1 minute intervals. (remember: cube's evaluator uses [fixed resolution times](https://github.com/square/cube/wiki/Evaluator))
+once you start using cube's evaluator against this collection, cube would generate a `gorets_metrics` colleciton. for example, this evaluator request would sum the received counts at 1 minute intervals. (remember: cube's evaluator uses [fixed resolution times](https://github.com/square/cube/wiki/Evaluator))
 
 ```
 http://localhost:1081/1.0/metric?expression=sum(gorets(c))&step=6e4
