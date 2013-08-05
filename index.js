@@ -5,6 +5,8 @@ var cube = require('cube');
 var util = require('util');
 
 function _clean (str) {
+    console.log('PRE', str);
+
     str = str.toLowerCase();
 
     // convert all periods and spaces into underscore
@@ -14,6 +16,7 @@ function _clean (str) {
     // remove all remaining non-alpha, non-numeric, non-underscore chars
     str = str.replace(/[^_a-zA-Z\d:]/g, '');
 
+    console.log('POST', str);
     return str;
 }
 
@@ -43,6 +46,11 @@ CubeBackend.prototype.flush = function (timestamp, metrics) {
     for (var counterEvent in metrics.counters) {
         if (counterEvent.substring(0, this.prefixStatsLength) !== this.prefixStats) {
             this.cube.send({
+                type: _clean(counterEvent),
+                data: {c: metrics.counters[counterEvent]}
+            });
+
+            console.log({
                 type: _clean(counterEvent),
                 data: {c: metrics.counters[counterEvent]}
             });
