@@ -90,6 +90,6 @@ cubed uses udp to communicate with the cube instance. although tcp is supported 
 
 ## why cubed
 
-the future of cube and statsd is uncertain. indeed, that is the fate of all software. however, at present, our team has found the cube evaluator to be one of the more robust options available--after you get over any initial difficulties with the slightly unusual [metric expression syntax](https://github.com/square/cube/wiki/Queries#wiki-metric). in addition, statsd is both fast and robust for bursted statistical analysis. they are both also rediculously easy to integrate into node applications or any udp-enabled service.
+the future of cube and statsd is uncertain. indeed, that is the fate of all software. however, at present, our team has found the cube evaluator to be one of the more robust options available--after you master the slightly unusual [metric expression syntax](https://github.com/square/cube/wiki/Queries#wiki-metric). in addition, statsd is both fast and robust for bursted statistical analysis. they are both also rediculously easy to integrate into node applications or any udp-enabled service.
 
 graphite (which uses carbon) is an incredibly powerful solution. however, the ui and authorization strategies need some tlc. installing graphite is a bit rough-and-tumble and an adventure in python package dependencies. as an alternative, we are building rubyx (repo link coming soon) -- a stunningly simple node app and modern UI for interacting with cubed stats.
