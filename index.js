@@ -41,7 +41,7 @@ CubeBackend.prototype.flush = function (timestamp, metrics) {
         if (guageEvent.substring(0, this.prefixStatsLength) !== this.prefixStats) {
             this.cube.send({
                 type: guageEvent,
-                data: {g: metrics.counters[guageEvent]}
+                data: {g: metrics.gauges[guageEvent]}
             });
         }
     }
@@ -71,7 +71,7 @@ CubeBackend.prototype.flush = function (timestamp, metrics) {
         if (setEvent.substring(0, this.prefixStatsLength) !== this.prefixStats) {
             this.cube.send({
                 type: setEvent,
-                data: {ms: metrics.timer_data[setEvent]}
+                data: {s: _sets[setEvent]}
             });
         }
     }
