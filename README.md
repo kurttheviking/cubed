@@ -37,29 +37,29 @@ once the cubed backend is installed and statsd is restarted, data will automatic
 for example, the statsd event:
 
 ```
-gorets:1|c
+keiju:3|c
 ```
 
 would generate (at flush time) the following cube event:
 
 ```javascript
 {
-  "type": "gorets",
+  "type": "keiju",
   "time": "2013-07-12T17:10:00Z",
   "data": {
-    "c": 1
+    "c": 3
   }
 }
 ```
 
-cube, in turn, would generate a new document in the `gorets_events` collection:
+cube, in turn, would generate a new document in the `keiju_events` collection:
 
 ```javascript
 {
   "_id": ObjectId("..."),
-  "t": ISODate("2013-07-12T17:10:00Z"),
+  "t": ISODate("2013-07-12T17:10:0Z"),
   "d": {
-    "c": 1
+    "c": 3
   }
 }
 ```
@@ -70,10 +70,23 @@ cube's data keys are based on the default type keys in statsd events:
 - `g` for guages
 - `s` for sets
 
-cube automatically manages the `gorets_metrics` colleciton. this evaluator request would sum the received counts at 1 minute intervals (remember: cube's evaluator uses [fixed resolution times](https://github.com/square/cube/wiki/Evaluator)).
+cube automatically manages the `keiju_metrics` colleciton. the following evaluator request would sum the received counts at 1 minute intervals (remember: cube's evaluator uses [fixed resolution times](https://github.com/square/cube/wiki/Evaluator)).
 
 ```
-http://localhost:1081/1.0/metric?expression=sum(gorets(c))&step=6e4
+http://localhost:1081/1.0/metric?expression=sum(keiju(c))&step=6e4
+```
+
+which would respond with:
+
+```javascript
+[
+    ...
+    {
+        "time": "2013-07-12T17:10:00Z",
+        "value": 3
+    },
+    ...
+]
 ```
 
 ***pro tip***: do not use cube's evaluator at time resolutions smaller than your statsd flush interval (the resulting data will include inaccurate 0 values which do not reflect observed behavior). we have found that it is helpful to include the available time resolutions within internal metrics analysis docs.
