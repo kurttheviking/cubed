@@ -1,0 +1,27 @@
+{
+  "name": "cubed",
+  "version": "0.0.1",
+  "description": "a super-simple backend for statsd; relays statsd events to a cube instance via udp",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "dependencies": {
+    "cube": "0.2.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agilemd/cubed"
+  },
+  "keywords": [
+    "cube",
+    "statsd",
+    "mathftw"
+  ],
+  "author": "AgileMD <hello@agilemd.com>",
+  "contributors": [
+    "kurttheviking <kurt@agilemd.com>"
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
