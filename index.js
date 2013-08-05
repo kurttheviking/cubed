@@ -5,14 +5,12 @@ var cube = require('cube');
 var util = require('util');
 
 function CubeBackend (startupTime, config, emitter){
-    console.log('config', config);
-
     var self = this;
 
     this.lastFlush = startupTime;
     this.lastException = 0;
-    this.prefixStats = config.prefixStats;
-    this.prefixStatsLength = config.prefixStats.length;
+    this.prefixStats = config.prefixStats || 'statsd';  // TODO: how to dynamically retrieve this from statsd?
+    this.prefixStatsLength = this.prefixStats.length;
 
     this.cubeHost = config.cubeHost || 'localhost';
     this.cubePort = config.cubePort || 1180;
