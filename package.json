@@ -1,10 +1,10 @@
 {
   "name": "cubed",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "a super simple backend for statsd; relays statsd events to a cube instance via udp",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "node test"
   },
   "dependencies": {
     "cube": "0.2.9"

@@ -70,7 +70,7 @@ cube's data keys are based on the default type keys in statsd events:
 - `g` for guages
 - `s` for sets
 
-cube automatically manages the `keiju_metrics` colleciton. the following evaluator request would sum the received counts at 1 minute intervals (remember: cube's evaluator uses [fixed resolution times](https://github.com/square/cube/wiki/Evaluator)).
+cube automatically manages the related `keiju_metrics` colleciton. the following evaluator request would sum the received counts at 1 minute intervals (remember: cube's evaluator uses [fixed resolution times](https://github.com/square/cube/wiki/Evaluator)).
 
 ```
 http://localhost:1081/1.0/metric?expression=sum(keiju(c))&step=6e4
@@ -97,9 +97,20 @@ which would respond with:
 - statsd is designed to collect data in (nearly) real time. as a result, there is currently no good way to pass a timestamp for a previously recorded event to cube from statsd. as a result, all events are timestamped by cube's collector when they are received by cube.
 
 
+## namespacing statsd -> cube
+
+in statsd, periods are used to namespace events. unfortunately, cube [does not (yet) support periods](https://github.com/square/cube/issues/95) in event names though they are [valid collection names](http://docs.mongodb.org/manual/faq/developers/). (hopefully this is patched soon...)
+
+for now, all periods (and spaces) are converted to underscores. then, all non-alphanumeric or non-underscore characters are removed.
+
+
 ## tests
 
-coming soon? use with caution.
+work in progress. use with caution.
+
+```
+npm test
+```
 
 
 ## no tcp?
@@ -109,6 +120,8 @@ cubed uses udp to communicate with the cube instance. although tcp is supported 
 
 ## why cubed
 
-the future of cube and statsd is uncertain. indeed, that is the fate of all software. however, at present, our team has found the cube evaluator to be one of the more robust options available--after you master the slightly unusual [metric expression syntax](https://github.com/square/cube/wiki/Queries#wiki-metric). in addition, statsd is both fast and robust for bursted statistical analysis. they are both also rediculously easy to integrate into node applications or any udp-enabled service.
+the future of cube and statsd is uncertain. indeed, that is the fate of all software. however, at present, our team has found the cube evaluator to be one of the more robust options available--after you master the slightly unusual [metric expression syntax](https://github.com/square/cube/wiki/Queries#wiki-metric). 
 
-graphite (which uses carbon) is an incredibly powerful solution. however, the ui and authorization strategies need some tlc. installing graphite is a bit rough-and-tumble and an adventure in python package dependencies. as an alternative, we are building rubyx (repo link coming soon) -- a stunningly simple node app and modern ui for interacting with cubed stats.
+in addition, the recent [infochimps merge](https://github.com/square/cube/pull/129) into `cube/master` has only increased our appreciation for cube and its maintainers. statsd is, as advertised, both fast and robust for bursted statistical analysis. they are both also rediculously easy to integrate into node applications or any udp-enabled service.
+
+graphite (which uses carbon) is an incredibly powerful solution. however, the ui and authorization strategies need some tlc. installing graphite is a bit rough-and-tumble and an adventure in python package dependencies.

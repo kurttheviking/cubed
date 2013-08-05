@@ -4,6 +4,19 @@
 var cube = require('cube');
 var util = require('util');
 
+function _clean (str) {
+    str = str.toLowerCase();
+
+    // convert all periods and spaces into underscore
+    // related: https://github.com/square/cube/issues/95
+    str = str.replace(/\.\s/g, '_');
+
+    // remove all remaining non-alpha, non-numeric, non-underscore chars
+    str = str.replace(/[^_a-zA-Z\d:]/g, '');
+
+    return str;
+}
+
 function CubeBackend (startupTime, config, emitter){
     var self = this;
 
@@ -30,7 +43,7 @@ CubeBackend.prototype.flush = function (timestamp, metrics) {
     for (var counterEvent in metrics.counters) {
         if (counterEvent.substring(0, this.prefixStatsLength) !== this.prefixStats) {
             this.cube.send({
-                type: counterEvent,
+                type: _clean(counterEvent),
                 data: {c: metrics.counters[counterEvent]}
             });
         }
@@ -40,7 +53,7 @@ CubeBackend.prototype.flush = function (timestamp, metrics) {
     for (var guageEvent in metrics.gauges) {
         if (guageEvent.substring(0, this.prefixStatsLength) !== this.prefixStats) {
             this.cube.send({
-                type: guageEvent,
+                type: _clean(guageEvent),
                 data: {g: metrics.gauges[guageEvent]}
             });
         }
@@ -50,7 +63,7 @@ CubeBackend.prototype.flush = function (timestamp, metrics) {
     for (var timerEvent in metrics.timer_data) {
         if (timerEvent.substring(0, this.prefixStatsLength) !== this.prefixStats) {
             this.cube.send({
-                type: timerEvent,
+                type: _clean(timerEvent),
                 data: {ms: metrics.timer_data[timerEvent]}
             });
         }
@@ -70,7 +83,7 @@ CubeBackend.prototype.flush = function (timestamp, metrics) {
     for (var setEvent in _sets) {
         if (setEvent.substring(0, this.prefixStatsLength) !== this.prefixStats) {
             this.cube.send({
-                type: setEvent,
+                type: _clean(setEvent),
                 data: {s: _sets[setEvent]}
             });
         }
@@ -81,6 +94,10 @@ CubeBackend.prototype.status = function (write) {
     ['lastFlush', 'lastException'].forEach(function (key) {
         write(null, 'console', key, this[key]);
     }, this);
+};
+
+exports.__test = {
+    _clean: _clean
 };
 
 exports.init = function (startupTime, config, emitter) {
