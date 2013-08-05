@@ -63,7 +63,7 @@ cube, in turn, would generate a new document in the `gorets_events` collection:
 }
 ```
 
-the data keys are based on the type keys in statsd events:
+cube's data keys are based on the default type keys in statsd events:
 - `c` for counters
 - `ms` for timers
 - `g` for guages
