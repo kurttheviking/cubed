@@ -1,6 +1,6 @@
 {
   "name": "cubed",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "a super simple backend for statsd; relays statsd events to a cube instance via udp",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   ],
   "author": "AgileMD <hello@agilemd.com>",
   "contributors": [
-    "kurttheviking <kurt@agilemd.com>"
+    "agilekurt <kurt@agilemd.com>"
   ],
   "license": "MIT",
   "readmeFilename": "README.md"
