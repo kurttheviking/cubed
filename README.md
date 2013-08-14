@@ -94,7 +94,7 @@ which would respond with:
 **notes**
 - statsd internal statistics (e.g. `counters.statsd.packets_received`) are not sent to cube.
 - raw timer data is not provided to cube; cube only receives the summary timer statistics (mean, upper count, sum, etc).
-- statsd is designed to collect data in (nearly) real time. as a result, there is currently no good way to pass a timestamp for a previously recorded event to cube from statsd. as a result, all events are timestamped by cube's collector when they are received by cube.
+- statsd is designed to collect data in (nearly) real time. as a result, there is currently no good way to pass a timestamp for a previously recorded event to cube from statsd. all events are timestamped by cube's collector when they are received by cube.
 
 
 ## namespacing statsd -> cube
