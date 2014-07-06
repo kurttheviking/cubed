@@ -1,7 +1,7 @@
 cubed
 =====
 
-a super simple backend for [statsd](https://github.com/etsy/statsd); relays flushed events to a [cube](https://github.com/square/cube) instance via udp
+A udp-based, [cube](https://github.com/square/cube) backend for [statsd](https://github.com/etsy/statsd)
 
 
 ## install
