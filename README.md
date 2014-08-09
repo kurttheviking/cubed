@@ -97,7 +97,7 @@ which would respond with:
 - statsd is designed to collect data in (nearly) real time. as a result, there is currently no good way to pass a timestamp for a previously recorded event to cube from statsd. all events are timestamped by cube's collector when they are received by cube.
 
 
-## namespacing statsd -> cube
+## namespacing statsd &rarr; cube
 
 in statsd, periods are used to namespace events. unfortunately, cube [does not (yet) support periods](https://github.com/square/cube/issues/95) in event names though they are [valid collection names](http://docs.mongodb.org/manual/faq/developers/). (hopefully this is patched soon...)
 
