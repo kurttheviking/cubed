@@ -1,5 +1,7 @@
-cubed
-=====
+DEPRECATED: cubed
+=================
+
+**This module has been deprecated as of November 9, 2015. It will be removed from npm on November 1, 2016.**
 
 A udp-based, [cube](https://github.com/square/cube) backend for [statsd](https://github.com/etsy/statsd)
 
@@ -12,7 +14,7 @@ from your statsd directory
 npm install cubed
 ```
 
-Add the `cubed` backend configuration to your statsd configuration file. 
+Add the `cubed` backend configuration to your statsd configuration file.
 
 ```javascript
 {
